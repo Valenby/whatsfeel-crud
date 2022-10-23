@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <title>CRUD</title>
+</head>
+<body>
+      
+      </nav>            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contacto">Contacto</a>
+              </li>                     
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+
+      <div class="container mt-4">
+     
+            <div class="card border-secondary">  
+                <div class="card-header">Nuevo Usuario</div>
+                <div class="card-body">
+                    <form action="/admin/create-user/guardar" method="POST">
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="nombres" name="nombres" tabindex="1" placeholder="Nombre" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="apellidos" name="apellidos" tabindex="1" placeholder="Apellidos" required>
+                        </div> 
+
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono" tabindex="1" placeholder="Telefono" maxlength="7"  required>
+                        </div>
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" name="correo" minlength="7" max="10" placeholder="Correo" required>
+                        </div>
+  
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" tabindex="1" placeholder="Usuario" required>
+                        </div> 
+                               
+                        <div class="mb-3">
+                        <label for="user" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" tabindex="1" placeholder="Contraseña" required>
+                        </div>  
+
+                           
+                               
+                      
+                                
+                        <button type="submit" class="btn btn-primary" tabindex="8">Guardar</button>
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+            </div>        
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

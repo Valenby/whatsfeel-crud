@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+   <meta charset="utf-8">
+   <title>MULTI FORMULARIO</title>
+   <link rel="stylesheet" href="http://localhost:5000/css/registro.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="sweetalert2.min.js"></script>
+   <link rel="stylesheet" href="sweetalert2.min.css">
+</head>
+
+<body>
+   <div class="container">
+      <header>FORMULARIO WHATSFEEL</header>
+      <div class="progress-bar">
+         <div class="step">
+            <p>
+               Nombre
+            </p>
+            <div class="bullet">
+               <span>1</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Contacto
+            </p>
+            <div class="bullet">
+               <span>2</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Edad
+            </p>
+            <div class="bullet">
+               <span>3</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Enviar
+            </p>
+            <div class="bullet">
+               <span>4</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+      </div>
+
+      <div class="form-outer">
+         <form action="/save" method="POST" id="registro">
+
+
+            <div class="page slide-page">
+               <div class="title">
+                  Datos Basicos:
+               </div>
+               
+               <div class="field">
+                  <div class="label" for="user">
+                     Nombres
+                  </div>
+                     <input type="text"  id="nombres"  name="nombres" onkeypress="return soloLetras(event)" required placeholder="Ingresa tu Nombre"/>
+               </div>
+
+               <div class="field">
+                  <div class="label" for="user">
+                     Apellidos
+                  </div>
+                  <input type="text"  onkeypress="return soloLetras(event)" id="apellidos" name="apellidos" required placeholder="Ingresa tu Apellido">
+               </div>
+               
+               <div class="field">
+                  <button class="firstNext next">Siguiente</button>
+               </div> 
+            </div>
+
+
+            <div class="page">
+               <div class="title">
+                  informacion de Contacto:
+               </div>
+
+               <div class="field">
+                  <div class="label" for="user">
+                     Correo
+                  </div>
+                  <input type="email" id="correo" name="correo" required  placeholder="Ingresa tu correo">
+               </div>
+
+               <div class="field">
+                  <div class="label" for="user">
+                     Numero Telefonico (+7)
+                  </div>
+                  <input type="text" onkeypress="return soloNumeros(event)" id="telefono" name="telefono" minlength="7" required  placeholder="Ingresa tu Numero">
+               </div>
+               
+               <div class="field btns">
+                  <button class="prev-1 prev">Anterior</button>
+                  <button class="next-1 next">Siguiente</button>
+               </div>
+
+            </div>
+            <div class="page">
+               <div class="title">
+                  Datos de Nacimiento:
+               </div>
+               <div class="field">
+                  <div class="label" for="user">
+                     Edad
+                  </div>
+                  <input  type="number" min="0" step="1"  onkeypress="return soloNumeros(event)" id="edad" name="edad" max="3" required placeholder="Ingresa tu Edad">
+               </div>
+               <div class="field">
+                  <div class="label" for="user">
+                     Genero
+                  </div>
+                  <select>
+                     <option>Hombre</option>
+                     <option>Mujer</option>
+                     <option>Otros</option>
+                  </select>
+               </div>
+               <div class="field btns">
+                  <button class="prev-2 prev">Anterior</button>
+                  <button class="next-2 next">Siguiente</button>
+               </div>
+            </div>
+            <div class="page">
+               <div class="title">
+                  Datos de login:
+               </div>
+               <div class="field">
+                  <div class="label" for="user">
+                     Username
+                  </div>
+                  <input type="user" id="usuario" name="usuario" required  placeholder="Ingresa tu Username">
+               </div>
+               <div class="field">
+                  <div class="label" for="user">
+                     Contraseña
+                  </div>
+                  <input type="password" id="contrasena" name="contrasena" required  placeholder="Ingresa tu Contraseña">
+               </div>
+               <div class="field btns">
+                  <button class="prev-3 prev">Anterior</button>
+                  <button class="submit">Enviar</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   
+   <script>
+      const slidePage = document.querySelector(".slide-page");
+      const nextBtnFirst = document.querySelector(".firstNext");
+      const prevBtnSec = document.querySelector(".prev-1");
+      const nextBtnSec = document.querySelector(".next-1");
+      const prevBtnThird = document.querySelector(".prev-2");
+      const nextBtnThird = document.querySelector(".next-2");
+      const prevBtnFourth = document.querySelector(".prev-3");
+      const submitBtn = document.querySelector(".submit");
+      const progressText = document.querySelectorAll(".step p");
+      const progressCheck = document.querySelectorAll(".step .check");
+      const bullet = document.querySelectorAll(".step .bullet");
+      let current = 1;
+      nextBtnFirst.addEventListener("click", function (event) {
+         let nombres = document.querySelector("#nombres").value;
+         let apellidos = document.querySelector("#apellidos").value;
+         if(nombres.length == 0 || apellidos.length == 0 ) {
+            alert("Ingresa los campos")
+         }
+         else {
+            console.log(nombres)
+            event.preventDefault();
+            slidePage.style.marginLeft = "-25%";
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+         }
+      });
+
+      nextBtnSec.addEventListener("click", function (event) {
+         let correo = document.querySelector("#correo").value;
+         let telefono = document.querySelector("#telefono").value;
+         var validRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+         if (!correo.match(validRegex) || telefono.length < 7) {
+            alert("El correo o el telefono no es valido");
+         } 
+         else {
+            console.log(telefono)
+            event.preventDefault();
+            slidePage.style.marginLeft = "-50%";
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+         }
+      });
+
+      nextBtnThird.addEventListener("click", function (event) {
+         let edad = document.querySelector("#edad").value;
+         if (edad < 0 || (edad % 1 != 0) || edad.length >3 ) {
+            console.log(edad % 1 != 0)
+            alert("La edad no es valida");
+         } else {
+            event.preventDefault();
+            slidePage.style.marginLeft = "-75%";
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+         }
+
+      });
+      submitBtn.addEventListener("click", function () {
+         let usuario = document.querySelector("#usuario").value;
+         let contrasena = document.querySelector("#contrasena").value;
+         if(usuario.length == 0 || contrasena.length == 0 ) {
+            alert("Ingresa los campos")
+         }
+         else {
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+            swal({
+               type: "success",
+               title: "¡Registrado Correctamente!",
+               text: "Puesdes Seguir con los test"
+            }).then(function () {
+               window.location = "http://localhost:5000/ruta";
+            });
+         }
+
+      });
+      prevBtnSec.addEventListener("click", function (event) {
+         event.preventDefault();
+         slidePage.style.marginLeft = "0%";
+         bullet[current - 2].classList.remove("active");
+         progressCheck[current - 2].classList.remove("active");
+         progressText[current - 2].classList.remove("active");
+         current -= 1;
+      });
+      prevBtnThird.addEventListener("click", function (event) {
+         event.preventDefault();
+         slidePage.style.marginLeft = "-25%";
+         bullet[current - 2].classList.remove("active");
+         progressCheck[current - 2].classList.remove("active");
+         progressText[current - 2].classList.remove("active");
+         current -= 1;
+      });
+      prevBtnFourth.addEventListener("click", function (event) {
+         event.preventDefault();
+         slidePage.style.marginLeft = "-50%";
+         bullet[current - 2].classList.remove("active");
+         progressCheck[current - 2].classList.remove("active");
+         progressText[current - 2].classList.remove("active");
+         current -= 1;
+      });
+
+      function soloLetras(e) {
+         key = e.keyCode || e.which;
+         tecla = String.fromCharCode(key).toLowerCase();
+         letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+         especiales = [8, 37, 39, 46];
+
+         tecla_especial = false
+         for (var i in especiales) {
+            if (key == especiales[i]) {
+               tecla_especial = true;
+               break;
+            }
+         }
+
+         if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+      }
+
+      function soloNumeros(e) {
+         key = e.keyCode || e.which;
+         tecla = String.fromCharCode(key).toLowerCase();
+         letras = " 0123456789";
+         especiales = [8, 37, 39, 46];
+
+         tecla_especial = false
+         for (var i in especiales) {
+            if (key == especiales[i]) {
+               tecla_especial = true;
+               break;
+            }
+         }
+
+         if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+      }
+
+
+
+   </script>
+</body>
+
+</html>
